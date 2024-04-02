@@ -3,6 +3,7 @@ package com.fullcycle.admin.catalogo.application.category.create;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,11 @@ public class CreateCategoryUseCaseTest {
     private DefaultCreateCategoryUseCase useCase;
     @Mock
     private CategoryGateway categoryGateway;
+
+    @BeforeEach
+    void cleanUp(){
+        Mockito.reset();
+    }
 
     @Test
     public void givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId() {
@@ -54,7 +60,7 @@ public class CreateCategoryUseCaseTest {
     }
 
     @Test
-    public void givenAValidName_whenCallsCreateCategory_thenShouldReturnDomainException(){
+    public void givenAInvalidName_whenCallsCreateCategory_thenShouldReturnDomainException(){
         final String expectedName = null;
         final var expectedDescription = "A categoria mais assistida";
         final var expectedIsActive = true;
