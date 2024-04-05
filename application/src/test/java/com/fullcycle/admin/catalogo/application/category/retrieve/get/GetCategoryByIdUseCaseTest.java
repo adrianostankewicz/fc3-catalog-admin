@@ -1,4 +1,4 @@
-package com.fullcycle.admin.catalogo.application.category.retrieve;
+package com.fullcycle.admin.catalogo.application.category.retrieve.get;
 
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
@@ -55,12 +55,12 @@ public class GetCategoryByIdUseCaseTest {
         Assertions.assertEquals(expectedIsActive, actualCategory.isActive());
         Assertions.assertEquals(aCategory.getCreatedAt(), actualCategory.createdAt());
         Assertions.assertEquals(aCategory.getUpdatedAt(), actualCategory.updatedAt());
-        Assertions.assertNull(aCategory.getDeletedAt(), actualCategory.deletedAt());
+        Assertions.assertEquals(aCategory.getDeletedAt(), actualCategory.deletedAt());
     }
 
     @Test
     public void givenAInvalidId_whenCallsGetCategory_shouldReturnNotFound(){
-        final var expectedErrorMessage = "";
+        final var expectedErrorMessage = "Category with ID 123 was not found";
         final var expectedId = CategoryID.from("123");
 
         when(categoryGateway.findById(eq(expectedId)))
