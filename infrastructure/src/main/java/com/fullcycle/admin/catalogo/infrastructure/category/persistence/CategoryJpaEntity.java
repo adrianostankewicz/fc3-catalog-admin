@@ -19,7 +19,7 @@ public class CategoryJpaEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "name", length = 4000)
+    @Column(name = "description", length = 4000)
     private String description;
 
     @Column(name = "active", nullable = false)
